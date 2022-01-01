@@ -7,16 +7,34 @@ import TodoItem from './components/Todo_item';
 function App() {
   const [todos, setTodos] = useState([])
   const [item, setItem] = useState('')
-  const [agree, setAgree] = useState(false)
   // const inputRef = useRef()
 
   const addTodo = (e) => {
     e.preventDefault()
     if(item){
-      const newItem = {id: new Date().getTime().toString(), item: item}
+      const newItem = {id: new Date().getTime().toString(), item: item, agree: false}
       setTodos([...todos, newItem])
+    } else {
+      alert('Enter the valid value...')
     }
     setItem('')
+  }
+
+  const completed = (id) => {
+    // const unCompletedItem = todos.filter(todo => todo.id !== id)
+    // const completedItem = todos.filter(todo => todo.id === id)
+    
+    // completedItem[0].agree = !completedItem[0].agree
+    // setTodos([...completedItem, ...unCompletedItem])
+    // console.log(todos)
+    const newTodos = todos.reduce((todo, index) => {
+      if(todo.id === id) {
+        todo.agree = !todo.agree
+      }
+      return todos
+    })
+    setTodos(newTodos)
+    console.log(todos)
   }
 
   const removeTodo = (id) => {
@@ -35,12 +53,8 @@ function App() {
     removeTodo(id)
   }
 
-  const isCompleted = (id, event) => {
-    todos.forEach(todo => {
-      if(todo.id === id) {
-        setAgree(event.target.checked)
-      }
-    })
+  const clearTodos = () => {
+    setTodos([])
   }
 
   
@@ -63,12 +77,10 @@ function App() {
           todos={todos} 
           removeTodo={removeTodo} 
           editTodo={editTodo} 
-          agree={agree}
-          isCompleted={isCompleted}
+          completed={completed}
         />
       )}
-      
-      <ClearTodo />
+      <ClearTodo clearTodos={clearTodos} />
     </div>
   );
 }

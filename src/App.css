@@ -113,7 +113,7 @@ body {
 }
 
 .clear-todo {
-    margin-top: 150px;
+    margin-top: 60px;
     display: flex;
     justify-content: space-between;
 }
