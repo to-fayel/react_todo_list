@@ -5,6 +5,7 @@ import ClearTodo from './components/Clear_todo';
 import TodoItem from './components/Todo_item';
 
 function App() {
+  const [pending, setPending] = useState(null)
   const [todos, setTodos] = useState([])
   const [item, setItem] = useState('')
   // const inputRef = useRef()
@@ -18,23 +19,29 @@ function App() {
       alert('Enter the valid value...')
     }
     setItem('')
+    console.log(todos)
+    // showing pending task
+    pending_task()
   }
 
+  console.log(todos)
+
   const completed = (id) => {
-    // const unCompletedItem = todos.filter(todo => todo.id !== id)
-    // const completedItem = todos.filter(todo => todo.id === id)
-    
-    // completedItem[0].agree = !completedItem[0].agree
-    // setTodos([...completedItem, ...unCompletedItem])
-    // console.log(todos)
-    const newTodos = todos.reduce((todo, index) => {
+    todos.forEach(todo => { 
       if(todo.id === id) {
         todo.agree = !todo.agree
       }
-      return todos
     })
-    setTodos(newTodos)
-    console.log(todos)
+    
+    setTodos([...todos])
+    // showing pending task 
+    pending_task()
+  }
+
+  // showing pending task 
+  const pending_task = () => {
+    const PENDING_TASKS = todos.filter(todo => todo.agree === false)
+    setPending(PENDING_TASKS.length)
   }
 
   const removeTodo = (id) => {
@@ -54,6 +61,8 @@ function App() {
   }
 
   const clearTodos = () => {
+    // showing pending task
+    pending_task()
     setTodos([])
   }
 
@@ -80,7 +89,10 @@ function App() {
           completed={completed}
         />
       )}
-      <ClearTodo clearTodos={clearTodos} />
+      <ClearTodo
+        clearTodos={clearTodos}
+        pending={pending}
+      />
     </div>
   );
 }
