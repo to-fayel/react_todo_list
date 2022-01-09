@@ -6,12 +6,10 @@ export default function Clear_todo({ clearTodos, pending, message, removeMessage
         if(pending === 1 ) {
             return 'a'
         } else if(pending < 1) {
-            return '0'
+            return 'no'
         }
         return pending
     }
-
-    // const {active, showMessage} = message
 
     useEffect(() => {
         console.log('is it working')

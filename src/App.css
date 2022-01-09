@@ -19,6 +19,7 @@ body {
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+  
 
 .container h1 {
     margin-bottom: 25px;
@@ -56,7 +57,7 @@ body {
 }
 
 .add-todo button:hover {
-    color: #15161670;
+    color: #21a3bd;
     transition: 1s;
     -webkit-transition: 1s;
     -moz-transition: 1s;
@@ -121,6 +122,14 @@ body {
 .message {
     font-weight: 600;
     visibility: hidden;
+    background-color: rgb(241, 12, 12, 0.2);
+    width: 78%;
+    border-radius: 5px;
+    padding: 10px 10px 13px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .show-message {
@@ -136,6 +145,7 @@ body {
     border: none;
     cursor: pointer;
     font-weight: 500;
+    font-size: 1rem;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -143,10 +153,22 @@ body {
 }
 
 .clear-todo button:hover {
-    background-color: #d63a3f7a;
+    background-color: #b92f34;
     transition: 1s;
     -webkit-transition: 1s;
     -moz-transition: 1s;
     -ms-transition: 1s;
     -o-transition: 1s;
+}
+
+/* responsiveness */
+@media only screen and (max-width: 500px) {
+    .container {
+        padding: 10px;
+    }
+
+    .clear-todo button {
+        padding: 3px 5px;
+        font-size: 0.9rem;
+    }
 }
