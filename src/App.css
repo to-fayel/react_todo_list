@@ -118,8 +118,13 @@ body {
     justify-content: space-between;
 }
 
-.messege {
+.message {
     font-weight: 600;
+    visibility: hidden;
+}
+
+.show-message {
+    visibility: visible;
 }
 
 .clear-todo button {

@@ -8,6 +8,7 @@ function App() {
   const [pending, setPending] = useState(null)
   const [todos, setTodos] = useState([])
   const [item, setItem] = useState('')
+  const [message, setMessage] = useState({ active: false, showMessage: '' })
   // const inputRef = useRef()
 
   const addTodo = (e) => {
@@ -21,7 +22,7 @@ function App() {
     setItem('')
     console.log(todos)
     // showing pending task
-    pending_task()
+    // pending_task()
   }
 
   console.log(todos)
@@ -42,6 +43,12 @@ function App() {
   const pending_task = () => {
     const PENDING_TASKS = todos.filter(todo => todo.agree === false)
     setPending(PENDING_TASKS.length)
+    setMessage({ active: true, showMessage: 'show-message'})
+  }
+
+  // removing show-message class 
+  const removeMessage = () => {
+    setMessage({ active: false, showMessage: '' })
   }
 
   const removeTodo = (id) => {
@@ -49,6 +56,8 @@ function App() {
       return todo.id !== id
     })
     setTodos(newItems)
+    // showing pending task
+    // pending_task()
   }
 
   const editTodo = (id) => {
@@ -58,14 +67,15 @@ function App() {
     const [editItem] = editItems 
     setItem(editItem.item)
     removeTodo(id)
+    // showing pending task
+    // pending_task()
   }
 
   const clearTodos = () => {
-    // showing pending task
-    pending_task()
     setTodos([])
+    // showing pending task
+    // pending_task()
   }
-
   
   return (
     <div className="container">
@@ -92,6 +102,9 @@ function App() {
       <ClearTodo
         clearTodos={clearTodos}
         pending={pending}
+        message={message}
+        removeMessage={removeMessage}
+        todos={todos}
       />
     </div>
   );
