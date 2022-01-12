@@ -25,7 +25,7 @@ function App() {
     // pending_task()
   }
 
-  console.log(todos)
+  // console.log(todos)
 
   const completed = (id) => {
     todos.forEach(todo => { 
